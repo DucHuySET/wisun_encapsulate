@@ -90,7 +90,7 @@ void hdlc_decode(const uint8_t *aData, uint8_t *result, int aLength)
     }
 }
 
-void hdlc_encode(const uint8_t *aData, uint8_t *result) // TODO: add uint8_t result array
+void hdlc_encode(const uint8_t *aData, uint8_t *result)
 {
     uint16_t fcs = HDLC_FCS_INIT;
     int index = 0;

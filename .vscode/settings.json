@@ -6,7 +6,8 @@
         "assert.h": "c",
         "hdlc.h": "c",
         "stdbool.h": "c",
-        "wpan_api.h": "c"
+        "wpan_api.h": "c",
+        "coap.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled",
     "C_Cpp.intelliSenseEngineFallback": "disabled"
