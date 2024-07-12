@@ -5,8 +5,10 @@
 #include <stdio.h>
 #include <assert.h>
 
-#include "fcs_computation.h"
 #include "hdlc.h"
+
+void hdlc_encode(const uint8_t *aData, uint8_t *result);
+void hdlc_decode(const uint8_t *aData, uint8_t *result, int aLength);
 
 Decoder_state mDecoderState = {.mState = kStateCompleted, .mDecodedLength = 0, .mFcs = 0};
 
@@ -74,7 +76,7 @@ void hdlc_decode(const uint8_t *aData, uint8_t *result, int aLength)
                     if ((mDecoderState.mDecodedLength >= FCS_SIZE) && (mDecoderState.mFcs == HDLC_FCS_GOOD))
                     {
                         // Remove the FCS from the frame.
-                        result[mDecoderState.mDecodedLength - FCS_SIZE]  = '\0';
+                        result[mDecoderState.mDecodedLength - FCS_SIZE] = '\0';
                     }
                 }
 
