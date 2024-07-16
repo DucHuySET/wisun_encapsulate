@@ -13,5 +13,13 @@ size_t coap_packet_to_bytes(const COAP_PACKET *packet, uint8_t *result)
     size++;
 
     memcpy(result + size, packet->coap_payload, packet->coap_payload_length);
+    size += packet->coap_payload_length;
     return size;
+}
+
+void coap_packet_pack(COAP_HEADER_PACKET *header, uint8_t *payload, size_t payload_length, COAP_PACKET *packet)
+{
+    packet->coap_header = *header;
+    packet->coap_payload = payload;
+    packet->coap_payload_length = payload_length;
 }

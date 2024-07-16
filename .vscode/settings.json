@@ -7,7 +7,8 @@
         "hdlc.h": "c",
         "stdbool.h": "c",
         "wpan_api.h": "c",
-        "coap.h": "c"
+        "coap.h": "c",
+        "ipv6.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled",
     "C_Cpp.intelliSenseEngineFallback": "disabled"

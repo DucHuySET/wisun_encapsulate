@@ -1,7 +1,7 @@
-#include <coap_header.h>
+#include "coap_header.h"
 #include <string.h>
 
-void pack_coap_header(COAP_HEADER_PACKET *packet, coap_msg_type_e type,
+void coap_header_pack(COAP_HEADER_PACKET *packet, coap_msg_type_e type,
                       uint8_t token_length, coap_msg_code_e code, uint16_t msg_id,
                       coap_token token, COAP_OPTION_LIST *option_list)
 {
@@ -11,7 +11,7 @@ void pack_coap_header(COAP_HEADER_PACKET *packet, coap_msg_type_e type,
     packet->coap_code = code;
     packet->coap_msg_id = msg_id;
     packet->coap_token_ = token;
-    memcpy(&packet->coap_option_list, option_list, sizeof(option_list));
+    packet->coap_option_list = option_list;
 }
 
 size_t coap_header_to_bytes(const COAP_HEADER_PACKET *packet, uint8_t *result)
@@ -29,8 +29,9 @@ size_t coap_header_to_bytes(const COAP_HEADER_PACKET *packet, uint8_t *result)
     }
     size += packet->token_length;
     uint8_t option_bytes[MAX_OPTION_LENGTH];
-    size_t option_bytes_length = coap_option_list_to_bytes(&packet->coap_option_list, option_bytes);
+    size_t option_bytes_length = coap_option_list_to_bytes(packet->coap_option_list, option_bytes);
     memcpy(result + size, option_bytes, option_bytes_length);
+    size += option_bytes_length;
     return size;
 }
 

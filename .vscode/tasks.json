@@ -11,6 +11,9 @@
                 "${file}",
                 "../lib/spinel/*",
                 "../lib/hdlc/*",
+                "../lib/coap/*",
+                "../lib/udp/*",
+                "../lib/ip6/*",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],

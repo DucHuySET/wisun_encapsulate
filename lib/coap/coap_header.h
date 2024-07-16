@@ -1,10 +1,11 @@
 #include <stdint.h>
 #include <stddef.h>
-#include <coap_option.h>
+#include "coap_option.h"
 
 #ifndef COAP_HEADER_HEADER
 #define COAP_HEADER_HEADER
 #define MAX_HEADER_LENGTH 256
+#define COAP_DEFAULT_TKL 8
 // 0                   1                   2                   3
 //     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 //    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -65,10 +66,10 @@ typedef struct
     // 3rd-4th byte
     uint16_t coap_msg_id;
     coap_token coap_token_;
-    COAP_OPTION coap_option_list[MAX_OPTION_LIST];
+    COAP_OPTION_LIST * coap_option_list;
 } COAP_HEADER_PACKET;
 
-void pack_coap_header(COAP_HEADER_PACKET *packet, coap_msg_type_e type,
+void coap_header_pack(COAP_HEADER_PACKET *packet, coap_msg_type_e type,
                       uint8_t token_length, coap_msg_code_e code,
                       uint16_t msg_id, coap_token token,
                       COAP_OPTION_LIST *option_list);
